@@ -16,7 +16,7 @@
         for ($j = $i; $j < 8; $j++)
             echo "&nbsp;&nbsp;";
         for ($j = 2 * $i - 1; $j > 0; $j--)
-            echo ("<span>&nbsp;*<span>");
+            echo ("&nbsp;*");
         echo "<br>";
     }
     $n = 8;
