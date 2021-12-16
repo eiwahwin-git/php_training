@@ -7,7 +7,7 @@
 <title>Tutorial 4</title>
 </head>
 <body>
-<h1>Age Calculation</h1>
+<h1>Age Calculate</h1>
 <form action="calculate.php" method="post">
 <input type="date" name="date">
 <input type="submit" value="Age calculate">
