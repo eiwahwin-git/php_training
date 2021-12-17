@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div>
         <h2>Contents of text file</h2>
         <?php
         $file = file_get_contents('sample.txt', true);
@@ -49,7 +49,7 @@
         ?>
     </div>
 
-    <div class="container">
+    <div>
         <h2>Contents of doc file</h2>
         <?php
         function readWord($filename)
