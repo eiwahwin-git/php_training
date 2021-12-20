@@ -8,13 +8,13 @@ if(isset($fileName))
 {
   $structure = "./" .$foldername;
   if (!mkdir($structure)) {
-    echo "Folder Exist";
+    echo "Folder Already Existed.<br>";
   }
   if(!empty($fileName))
   {if($type="jpg"||$type="jpeg"||$type="png"){
     if(move_uploaded_file($tmp, $location.$fileName))
     {
-      echo "File Uploaded " .$foldername;
+      echo "File Uploaded to " .$foldername;
     }
     else{
       echo "Not Uploaded  " .$foldername;
@@ -22,4 +22,3 @@ if(isset($fileName))
   }
 }
 }
-?>
