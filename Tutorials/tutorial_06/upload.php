@@ -10,12 +10,14 @@ if (isset($fileName)) {
         echo "Folder Already Existed.<br>";
     }
     if (!empty($fileName)) {
-        if ($type = "jpg" || $type = "jpeg" || $type = "png") {
+        if ($type == "image/jpg" || $type == "image/jpeg" || $type == "image/png") {
             if (move_uploaded_file($tmp, $location . $fileName)) {
                 echo "File Uploaded to " . $foldername;
             } else {
                 echo "Not Uploaded  " . $foldername;
             }
+        } else {
+            echo "Not Uploaded" . $foldername;
         }
     }
 }
