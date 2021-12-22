@@ -4,7 +4,7 @@ $location = $foldername . "/";
 $fileName = $_FILES["file"]["name"];
 $tmp = $_FILES["file"]["tmp_name"];
 $type = $_FILES["file"]["type"];
-if (isset($fileName)) {
+if (isset($fileName)&&($foldername)) {
     $structure = "./" . $foldername;
     if (!mkdir($structure)) {
         echo "Folder Already Existed.<br>";
