@@ -1,6 +1,6 @@
 <?php
 if (isset($_POST["id"]) && !empty($_POST["id"])) {
-    require_once "config.php";
+    require_once "confs/config.php";
     $id = $_POST["id"];
 
     $query = "DELETE FROM users WHERE id = '$id'";
