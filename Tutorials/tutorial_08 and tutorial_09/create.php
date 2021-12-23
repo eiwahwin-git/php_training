@@ -1,8 +1,8 @@
 <?php
 require_once "confs/config.php";
 
-$first_name = $last_name = $email = $phone_number = $address = "";
-$first_name_error = $last_name_error = $email_error = $phone_number_error = $address_error = "";
+$first_name = $last_name = $email = $phone_number = $address = $age="";
+$first_name_error = $last_name_error = $email_error = $phone_number_error = $address_error =$age_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstName = trim($_POST["first_name"]);
@@ -46,9 +46,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $address = $address;
     }
+    $age = trim($_POST["age"]);
+    if(empty($age)){
+        $age_error = "Age is required.";
+    } else {
+        $age = $age;
+    }
 
-    if (empty($first_name_error_err) && empty($last_name_error) && empty($email_error) && empty($phone_number_error) && empty($address_error) ) {
-          $sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone_number`, `address`) VALUES ('$firstName', '$lastName', '$email', '$phoneNumber', '$address')";
+    if (empty($first_name_error_err) && empty($last_name_error) && empty($email_error) && empty($phone_number_error) && empty($address_error) && empty($age_error) ) {
+          $sql = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone_number`, `address`,`age`) VALUES ('$firstName', '$lastName', '$email', '$phoneNumber', '$address','$age')";
 
           if (mysqli_query($conn, $sql)) {
               header("location: index.php");
@@ -84,25 +90,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group <?php echo (!empty($first_name_error)) ? 'has-error' : ''; ?>">
                             <label>First Name</label>
-                            <input type="text" name="first_name" class="form-control" value="">
+                            <input type="text" name="first_name" class="form-control" value="<?= isset($_POST['first_name']) ? $_POST['first_name'] : ''; ?>">
                             <span class="help-block"><?php echo $first_name_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($last_name_error)) ? 'has-error' : ''; ?>">
                             <label>Last Name</label>
-                            <input type="text" name="last_name" class="form-control" value="">
+                            <input type="text" name="last_name" class="form-control" value="<?= isset($_POST['last_name']) ? $_POST['last_name'] : ''; ?>">
                             <span class="help-block"><?php echo $last_name_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($email_error)) ? 'has-error' : ''; ?>">
                             <label>Email</label>
-                            <input type="email" name="email" class="form-control" value="">
+                            <input type="email" name="email" class="form-control" value="<?= isset($_POST['email']) ? $_POST['email'] : ''; ?>">
                             <span class="help-block"><?php echo $email_error;?></span>
                         </div>
 
                         <div class="form-group <?php echo (!empty($phone_number_error)) ? 'has-error' : ''; ?>">
                             <label>Phone Number</label>
-                            <input type="number" name="phone_number" class="form-control" value="">
+                            <input type="tel" name="phone_number" class="form-control" value="<?= isset($_POST['phone_number']) ? $_POST['phone_number'] : ''; ?>">
                             <span class="help-block"><?php echo $phone_number_error;?></span>
                         </div>
 
@@ -110,6 +116,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label>Address</label>
                             <textarea name="address" class="form-control"></textarea>
                             <span class="help-block"><?php echo $address_error;?></span>
+                        </div>
+                        <div class="form-group <?php echo (!empty($age_error)) ? 'has-error' : ''; ?>">
+                            <label>Age</label>
+                            <input type="text" name="age" class="form-control" value="<?= isset($_POST['age']) ? $_POST['age'] : ''; ?>">
+                            <span class="help-block"><?php echo $age_error;?></span>
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Submit">

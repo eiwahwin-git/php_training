@@ -25,6 +25,7 @@
             $email       = $user["email"];
             $phoneNumber = $user["phone_number"];
             $address     = $user["address"];
+            $age         = $user["age"];
         } else {
             header("location: read.php");
             exit();
@@ -62,6 +63,10 @@
                     <div class="form-group">
                         <label>Address</label>
                         <p class="form-control-static"><?php echo $address ?></p>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <p class="form-control-static"><?php echo $age ?></p>
                     </div>
                     <p><a href="index.php" class="btn btn-primary">Back</a></p>
                 </div>

@@ -39,11 +39,16 @@
                                         <th>Email</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
+                                        <th>Age</th>
                                         <th>Action</th>
                                       </tr>
                                     </thead>
                                     <tbody>";
                                 while($user = mysqli_fetch_array($users)) {
+                                  $name_pie[] = $user['first_name'];
+                                  $name1_pie[] = $user['last_name'];
+                                  $name[]=$user['first_name'].$user['last_name'];
+                                  $age_pie[] = $user['age'];
                                     echo "<tr>
                                             <td>" . $user['id'] . "</td>
                                             <td>" . $user['first_name'] . "</td>
@@ -51,6 +56,7 @@
                                             <td>" . $user['email'] . "</td>
                                             <td>" . $user['phone_number'] . "</td>
                                             <td>" . $user['address'] . "</td>
+                                            <td>" . $user['age'] . "</td>
                                             <td>
                                               <a href='read.php?id=". $user['id'] ."' title='View User' data-toggle='tooltip'><span class='glyphicon glyphicon-eye-open'></span></a>
                                               <a href='edit.php?id=". $user['id'] ."' title='Edit User' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
@@ -75,5 +81,26 @@
             </div>
         </div>
     </div>
+    <canvas id="pie-chart" width="800" height="450"></canvas>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script>
+    new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: <?php echo json_encode($name); ?>,
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: <?php echo json_encode($age_pie); ?>
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Age Show for users'
+      }
+    }
+});
+  </script>
 </html>
